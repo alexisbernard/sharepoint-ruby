@@ -54,6 +54,7 @@ module Sharepoint
             # if method is post, send parameters in the body
             body = (params.class < Hash ? params.to_json : params)
           end
+          action.gsub!("%27", "%27%27") # Escape single quotes
           # Call action
           @site.query method_params[:http_method], action, body, method_params[:skip_json]
         end
